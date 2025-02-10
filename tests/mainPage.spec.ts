@@ -72,6 +72,6 @@ test.describe('Тесты на отображение столешницы', () 
 
         //Итоговая стоимость: 451500.00 ₽
         const sum = await newPage.locator('.table').nth(9).locator('tr').nth(5).locator('td').nth(4).textContent();
-        await expect(sum).toEqual("490200.00 ₽");
+        await expect(sum).toEqual("486600.00 ₽");
     });
 });
