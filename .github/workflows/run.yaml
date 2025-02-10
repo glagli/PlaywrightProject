@@ -12,11 +12,11 @@ jobs:
         uses: actions/checkout@v4
       - run: npm ci
       - run: npx playwright install --with-deps
-      - run: npx playwright test --list
       - run: npx playwright test
+      - run: npx allure generate allure-results --clean
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: allure-results
-          path: allure-results
-          retention-days: 30
+          name: allure-report
+          path: allure-report
+          retention-days: 3
