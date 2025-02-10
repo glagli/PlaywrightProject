@@ -1,0 +1,22 @@
+name: PW Tests
+
+run-name: ${{ github.actor }} is running autotests 🚀
+
+on: [push, workflow_dispatch]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test --list
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-results
+          path: /
+          retention-days: 30
